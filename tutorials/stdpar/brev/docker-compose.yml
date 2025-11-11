@@ -1,8 +1,7 @@
 x-config:
   dockerfile: &dockerfile tutorials/stdpar/brev/dockerfile
-  image: &image ghcr.io/nvidia/stdpar-tutorial:brev-reorg-latest
+  image: &image ghcr.io/nvidia/stdpar-tutorial:latest
   working-dir: &working-dir /accelerated-computing-hub/tutorials/stdpar/notebooks
-  large: &large true
 
 services:
   base:
@@ -10,7 +9,7 @@ services:
       context: ../../..
       dockerfile: *dockerfile
       args:
-        GIT_BRANCH_NAME: ${GIT_BRANCH_NAME:-HEAD}
+        GIT_BRANCH_NAME: ${GIT_BRANCH_NAME}
     image: *image
     pull_policy: missing
     volumes:

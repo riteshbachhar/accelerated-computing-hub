@@ -16,6 +16,9 @@ jobs:
   test-tutorial:
     name: test-tutorial (${{ inputs.tutorial }})
     runs-on: linux-amd64-gpu-t4-latest-1
+    defaults:
+      run:
+        working-directory: ${{ github.workspace }}
     permissions:
       statuses: write
     steps:
@@ -39,7 +42,6 @@ jobs:
       - name: Test Docker Compose
         id: test
         run: |
-          cd /home/runner/_work/accelerated-computing-hub/accelerated-computing-hub
           ./brev/test-docker-compose.bash "tutorials/${{ inputs.tutorial }}/brev/docker-compose.yml"
 
       - name: Update commit status to success
